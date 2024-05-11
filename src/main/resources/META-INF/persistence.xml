@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="CurrencyConverterPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>entity.Currency</class>
+        <properties>
+            <!-- Standard JPA properties use 'javax.persistence.*' -->
+            <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/currencydb"/>
+            <property name="javax.persistence.jdbc.user" value="user"/>
+            <property name="javax.persistence.jdbc.password" value="password"/>
+
+            <!-- Configuration to ensure no schema generation is done by JPA -->
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+
+            <!-- Optional: show SQL in the console -->
+            <property name="hibernate.show_sql" value="true"/>
+
+            <!-- Optional: format SQL in the console -->
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!-- Optional: use second-level caching -->
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+            <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+        </properties>
+    </persistence-unit>
+</persistence>
