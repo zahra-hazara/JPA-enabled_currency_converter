@@ -1,32 +1,56 @@
 package entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "currencies")
 public class Currency {
     @Id
-    private String abbreviation;
+    @Column(name = "code")
+    private String code;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "symbol")
+    private String symbol;
+
+    @Column(name = "exchange_rate")
     private double exchangeRate;
 
-    public Currency() {
-        // Default constructor
-    }
+    // Default constructor required by JPA
+    public Currency() {}
 
-    public Currency(String abbreviation, double exchangeRate) {
-        this.abbreviation = abbreviation;
+    public Currency(String code, String name, String symbol, double exchangeRate) {
+        this.code = code;
+        this.name = name;
+        this.symbol = symbol;
         this.exchangeRate = exchangeRate;
     }
 
     // Getters and setters
-    public String getAbbreviation() {
-        return abbreviation;
+    public String getCode() {
+        return code;
     }
 
-    public void setAbbreviation(String abbreviation) {
-        this.abbreviation = abbreviation;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
     public double getExchangeRate() {
@@ -35,5 +59,10 @@ public class Currency {
 
     public void setExchangeRate(double exchangeRate) {
         this.exchangeRate = exchangeRate;
+    }
+
+    @Override
+    public String toString() {
+        return code + " - " + name;
     }
 }

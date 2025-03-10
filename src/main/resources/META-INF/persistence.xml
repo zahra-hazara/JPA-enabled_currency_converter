@@ -1,32 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
-             version="2.2">
-
-    <persistence-unit name="CurrencyConverterPU" transaction-type="RESOURCE_LOCAL">
+             version="2.1">
+    <persistence-unit name="your-persistence-unit-name">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>entity.Currency</class>
+        <class>entity.Currency</class> <!-- Add your entity classes here -->
+
         <properties>
-            <!-- Standard JPA properties use 'javax.persistence.*' -->
-            <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/currencydb"/>
-            <property name="javax.persistence.jdbc.user" value="user"/>
-            <property name="javax.persistence.jdbc.password" value="password"/>
+            <!-- Database connection properties -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/currencies"/>
+            <property name="javax.persistence.jdbc.user" value="zahra"/>
+            <property name="javax.persistence.jdbc.password" value="1234"/>
 
-            <!-- Configuration to ensure no schema generation is done by JPA -->
-            <property name="javax.persistence.schema-generation.database.action" value="none"/>
-
-            <!-- Optional: show SQL in the console -->
-            <property name="hibernate.show_sql" value="true"/>
-
-            <!-- Optional: format SQL in the console -->
-            <property name="hibernate.format_sql" value="true"/>
-
-            <!-- Optional: use second-level caching -->
-            <property name="hibernate.cache.use_second_level_cache" value="true"/>
-            <property name="hibernate.cache.use_query_cache" value="true"/>
-            <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+            <!-- Hibernate properties -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/> <!-- Auto-update schema -->
+            <property name="hibernate.show_sql" value="true"/> <!-- Show SQL in logs -->
+            <property name="hibernate.format_sql" value="true"/> <!-- Format SQL in logs -->
         </properties>
     </persistence-unit>
 </persistence>
